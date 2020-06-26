@@ -4,9 +4,9 @@
     <hr>
     <li>
       <p>{{ returnFundOfInd }}</p>
-      <a class="btn waves-effect waves-light btn-small blue lighten-3">
+      <router-link to="/ekz" class="btn waves-effect waves-light btn-small blue lighten-3">
         <i class="material-icons right">send</i>
-      </a>
+      </router-link>
     </li>
     <li>
       <p>{{ returnSafetyName }}</p>
@@ -19,9 +19,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+// import ekz from '@/components/ekz.vue';
 
 export default {
   name: 'ekzList',
+  components: {
+    // ekz,
+  },
   computed: mapGetters(['returnFundOfInd', 'returnSafetyName']),
 };
 </script>
