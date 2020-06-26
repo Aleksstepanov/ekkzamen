@@ -22,6 +22,7 @@ const routes = [
     path: '/ekz',
     name: 'Ekzamen',
     component: () => import('../views/Ekz.vue'),
+    props: true,
   },
 ];
 

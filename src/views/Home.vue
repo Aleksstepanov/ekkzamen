@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <ekzList />
+    <router-view />
   </div>
 </template>
 

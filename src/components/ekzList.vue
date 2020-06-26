@@ -1,20 +1,20 @@
 <template>
-  <ul>
+  <div>
     <h2>Выберете тему для экзамена</h2>
     <hr>
-    <li>
-      <p>{{ returnFundOfInd }}</p>
-      <router-link to="/ekz" class="btn waves-effect waves-light btn-small blue lighten-3">
-        <i class="material-icons right">send</i>
-      </router-link>
-    </li>
-    <li>
-      <p>{{ returnSafetyName }}</p>
-      <a class="btn waves-effect waves-light btn-small blue lighten-3">
-        <i class="material-icons right">send</i>
-      </a>
+    <ul>
+    <li v-for="elem in returnName" :key="elem.id">
+      <div class="elemList">
+        <p>{{ elem.name }}</p>
+        <router-link :to="{ name: 'Ekzamen', params: { id: elem.id }}"
+          class="btn waves-effect waves-light btn-small blue lighten-3"
+        >
+          <i class="material-icons right">send</i>
+        </router-link>
+      </div>
     </li>
   </ul>
+  </div>
 </template>
 
 <script>
@@ -26,11 +26,14 @@ export default {
   components: {
     // ekz,
   },
-  computed: mapGetters(['returnFundOfInd', 'returnSafetyName']),
+  computed: mapGetters(['returnName']),
 };
 </script>
 
 <style lang="scss" scoped>
+  h2 {
+    text-align: center;
+  }
   ul {
     display: flex;
     margin: 0 auto;
@@ -45,5 +48,14 @@ export default {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+  }
+  .elemList {
+    display: flex;
+    flex-direction: row;
+    max-width: 400px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
   }
 </style>
