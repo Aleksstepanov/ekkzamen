@@ -1,17 +1,18 @@
 <template>
   <div>
-    {{ id }}
-    <a v-on:click="test">Click me!</a>
+    {{returnName.filter(item => item.id === id)}}
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Ekz',
   props: {
     id: {
       type: Number,
-      // required: true,
+      required: true,
     },
   },
   methods: {
@@ -19,5 +20,6 @@ export default {
       console.log(this.id);
     },
   },
+  computed: mapGetters(['returnName']),
 };
 </script>
