@@ -1,8 +1,10 @@
 import FundamentalOfIndustrialSafety from './theme/FundamentalOfIndustrialSafety';
 import PTB from './theme/PTB';
+import Result from './Result';
 
 export default {
   state: {
+    Result,
     list: [
       FundamentalOfIndustrialSafety, // Основы Промышленной безопасности
       PTB, // Правила техники безопасности

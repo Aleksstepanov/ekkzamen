@@ -3,7 +3,9 @@
     <h2>{{ returnNameTheme }}</h2>
     <hr>
     <EkzItem v-bind:Question="returnQuestions"/>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Reply
+    <button class="btn waves-effect waves-light"
+            type="submit" name="action" v-on:click="ReplyClick">
+            Reply
       <i class="material-icons right">send</i>
     </button>
   </div>
@@ -35,6 +37,11 @@ export default {
     returnQuestions() {
       const Questions = this.returnQuestionsId[0].questions;
       return Questions;
+    },
+  },
+  methods: {
+    ReplyClick() {
+      this.EkzItem.render();
     },
   },
 };
