@@ -1,12 +1,12 @@
 <template>
   <div class="container">
       <h4>
-        {{ returnQuestionTitle }}
+        {{ Questions.title }}
       </h4>
     <ul>
-      <li v-for="elem in returnAnswerArray" :key="elem.title">
+      <li v-for="(elem, index) of Questions.answer" :key="elem.key">
       <label>
-        <input name="answer" type="radio"/>
+        <input name="answer" type="radio" v-bind:value="index"/>
         <span>{{elem.title}}</span>
       </label>
       </li>
@@ -17,17 +17,10 @@
 <script>
 
 export default {
-  props: ['Question'],
-  computed: {
-    returnQuestion() {
-      return this.Question;
-    },
-    returnQuestionTitle() {
-      return this.returnQuestion[0].title;
-    },
-    returnAnswerArray() {
-      console.log(this.returnQuestion);
-      return this.returnQuestion[0].answer;
+  props: {
+    Questions: {
+      type: Object,
+      required: true,
     },
   },
 };

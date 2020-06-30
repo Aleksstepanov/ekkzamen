@@ -11,8 +11,19 @@ export default {
     ],
   },
   mutations: {
+    createAnswer(state, answer) {
+      const newAnswer = {
+        id: answer.id,
+        result: answer.result,
+      };
+      state.Result.count += 1;
+      state.Result.answer.push(newAnswer);
+    },
   },
   actions: {
+    Reaply(ctx, answer) {
+      ctx.commit('createAnswer', answer);
+    },
   },
   getters: {
     returnName(state) {
@@ -22,6 +33,9 @@ export default {
     },
     returnNumberOfQuestion(state) {
       return state.list.length;
+    },
+    returnResult(state) {
+      return state.Result;
     },
   },
 };

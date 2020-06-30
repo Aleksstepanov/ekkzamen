@@ -1,18 +1,20 @@
 <template>
   <div>
-    <h2>{{ returnNameTheme }}</h2>
+    <h2>{{ returnName[id-1].name }}</h2>
     <hr>
-    <EkzItem v-bind:Question="returnQuestions"/>
-    <button class="btn waves-effect waves-light"
-            type="submit" name="action" v-on:click="ReplyClick">
-            Reply
-      <i class="material-icons right">send</i>
-    </button>
+    <EkzItem v-bind:Questions="returnName[id-1].questions[returnCount]"/>
+    <div class="buttons">
+      <button class="btn waves-effect waves-light"
+              type="submit" name="action" v-on:click="ReplyClick">
+              Reply
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import EkzItem from '@/components/EkzItem.vue';
 
 export default {
@@ -27,28 +29,32 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['returnName']),
-    returnQuestionsId() {
-      return this.returnName.filter((item) => item.id === this.id);
-    },
-    returnNameTheme() {
-      return this.returnQuestionsId[0].name;
-    },
-    returnQuestions() {
-      const Questions = this.returnQuestionsId[0].questions;
-      return Questions;
+    ...mapGetters(['returnName', 'returnResult']),
+    returnCount() {
+      return this.returnResult.count;
     },
   },
   methods: {
+    ...mapActions(['Reaply']),
     ReplyClick() {
-      this.EkzItem.render();
+      const answer = {
+        id: this.returnName[this.id - 1].questions[this.returnCount].count,
+        result: true,
+      };
+      if (this.returnName[this.id - 1].questions.length > this.returnResult.count + 1) {
+        this.Reaply(answer);
+      } else console.log('End');
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
- h2 {
+ h4, h2 {
    text-align: center;
+ }
+ .buttons {
+   display: flex;
+   justify-content: space-around;
  }
 </style>
