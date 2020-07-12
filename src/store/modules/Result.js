@@ -1,4 +1,11 @@
 export default {
   count: 0,
-  answer: [],
+  answer: [
+    {
+      title: '',
+      answerUser: '',
+      answerResult: '',
+      result: Boolean,
+    },
+  ],
 };

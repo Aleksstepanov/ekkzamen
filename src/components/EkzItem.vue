@@ -6,7 +6,10 @@
     <ul>
       <li v-for="(elem, index) of Questions.answer" :key="elem.key">
       <label>
-        <input name="answer" type="radio" v-bind:value="index"/>
+        <input name="answer" type="radio"
+                v-bind:value="index"
+                v-on:click="check(index)"
+        />
         <span>{{elem.title}}</span>
       </label>
       </li>
@@ -21,6 +24,14 @@ export default {
     Questions: {
       type: Object,
       required: true,
+    },
+    Result: {
+      type: Array,
+    },
+  },
+  methods: {
+    check(value) {
+      this.$emit('ReplyClick', value);
     },
   },
 };

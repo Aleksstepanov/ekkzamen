@@ -13,8 +13,10 @@ export default {
   mutations: {
     createAnswer(state, answer) {
       const newAnswer = {
-        id: answer.id,
-        result: answer.result,
+        title: answer.title,
+        answerUser: answer.answerUser,
+        answerResult: answer.answerResult,
+        result: this.answerUser === this.answerResult,
       };
       state.Result.count += 1;
       state.Result.answer.push(newAnswer);
