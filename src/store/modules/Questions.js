@@ -39,5 +39,8 @@ export default {
     returnResult(state) {
       return state.Result;
     },
+    returnListQuestions(state) {
+      return state.list;
+    },
   },
 };

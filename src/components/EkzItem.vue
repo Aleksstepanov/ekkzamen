@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     check(value) {
-      this.$emit('ReplyClick', value);
+      this.$emit('AnswerChecked', value);
     },
   },
 };

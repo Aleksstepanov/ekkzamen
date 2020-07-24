@@ -2,7 +2,9 @@
   <div>
     <h2>{{ returnName[id-1].name }}</h2>
     <hr>
-    <EkzItem v-bind:Questions="returnName[id-1].questions[returnCount]"/>
+    <EkzItem v-bind:Questions="returnName[id-1].questions[returnCount]"
+    v-on:AnswerChecked="AnswerChecked"
+    />
     <div class="buttons">
       <button class="btn waves-effect waves-light"
               type="submit" name="action" v-on:click="ReplyClick">
@@ -28,22 +30,33 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      value: Number,
+      EndQuestions: false,
+    };
+  },
   computed: {
-    ...mapGetters(['returnName', 'returnResult']),
+    ...mapGetters(['returnName', 'returnResult', 'returnListQuestions']),
     returnCount() {
       return this.returnResult.count;
+    },
+    ListQuestions() {
+      return this.returnListQuestions.filter((item) => item.id === this.id);
     },
   },
   methods: {
     ...mapActions(['Reaply']),
     ReplyClick() {
       const answer = {
-        id: this.returnName[this.id - 1].questions[this.returnCount].count,
-        result: true,
+        title: this.ListQuestions[this.returnCount].title,
       };
       if (this.returnName[this.id - 1].questions.length > this.returnResult.count + 1) {
         this.Reaply(answer);
-      } else console.log('End');
+      } else this.EndQuestions = true;
+    },
+    AnswerChecked(value) {
+      this.value = value;
     },
   },
 };
