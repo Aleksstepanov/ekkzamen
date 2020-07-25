@@ -2,7 +2,8 @@
   <div>
     <h2>{{ returnName[id-1].name }}</h2>
     <hr>
-    <EkzItem v-bind:Questions="returnName[id-1].questions[returnCount]"
+    <template v-if="returnResult.count <= returnName[id-1].questions.length - 1">
+      <EkzItem v-bind:Questions="returnName[id-1].questions[returnCount]"
     v-on:AnswerChecked="AnswerChecked"
     />
     <div class="buttons">
@@ -12,6 +13,13 @@
         <i class="material-icons right">send</i>
       </button>
     </div>
+    </template>
+    <template v-else>
+      <h3>Экзамен завершен</h3>
+      <p>Вы ответили правильно на следующее количество вопросов:
+        {{returnResult.answer.filter((item) => item.result).length}}
+      </p>
+    </template>
   </div>
 </template>
 
@@ -48,12 +56,15 @@ export default {
   methods: {
     ...mapActions(['Reaply']),
     ReplyClick() {
+      const question = this.returnListQuestions[this.id - 1].questions[this.returnCount];
       const answer = {
-        title: this.ListQuestions[this.returnCount].title,
+        title: question.title,
+        answerUser: question.answer[this.value].title,
+        answerResult: question.answer.filter((item) => item.result)[0].title,
+        result: question.answer[this.value].result,
       };
-      if (this.returnName[this.id - 1].questions.length > this.returnResult.count + 1) {
-        this.Reaply(answer);
-      } else this.EndQuestions = true;
+      console.log(answer.result);
+      this.Reaply(answer);
     },
     AnswerChecked(value) {
       this.value = value;
@@ -63,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
- h4, h2 {
+ h4, h2, h3, p {
    text-align: center;
  }
  .buttons {

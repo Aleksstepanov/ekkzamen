@@ -16,10 +16,10 @@ export default {
         title: answer.title,
         answerUser: answer.answerUser,
         answerResult: answer.answerResult,
-        result: this.answerUser === this.answerResult,
+        result: answer.result,
       };
-      state.Result.count += 1;
       state.Result.answer.push(newAnswer);
+      state.Result.count += 1;
     },
   },
   actions: {
