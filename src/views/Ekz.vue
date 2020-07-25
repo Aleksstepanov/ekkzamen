@@ -14,23 +14,21 @@
       </button>
     </div>
     </template>
-    <template v-else>
-      <h3>Экзамен завершен</h3>
-      <p>Вы ответили правильно на следующее количество вопросов:
-        {{returnResult.answer.filter((item) => item.result).length}}
-      </p>
-    </template>
+    <ResultScreen v-else v-bind:Result="returnResult">
+    </ResultScreen>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import EkzItem from '@/components/EkzItem.vue';
+import ResultScreen from '@/components/ResultScreen.vue';
 
 export default {
   name: 'Ekz',
   components: {
     EkzItem,
+    ResultScreen,
   },
   props: {
     id: {
@@ -63,7 +61,6 @@ export default {
         answerResult: question.answer.filter((item) => item.result)[0].title,
         result: question.answer[this.value].result,
       };
-      console.log(answer.result);
       this.Reaply(answer);
     },
     AnswerChecked(value) {
