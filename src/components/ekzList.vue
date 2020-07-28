@@ -3,7 +3,7 @@
     <h2>Выберете тему для экзамена</h2>
     <hr>
     <ul>
-    <li v-for="elem in returnName" :key="elem.id">
+    <li v-for="elem in returnName" :key="elem.id" v-on:click="ThemeClick">
       <div class="elemList">
         <p>{{ elem.name }}</p>
         <router-link :to="{ name: 'Ekzamen', params: { id: elem.id }}"
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 // import ekz from '@/components/ekz.vue';
 
 export default {
@@ -27,6 +27,12 @@ export default {
     // ekz,
   },
   computed: mapGetters(['returnName']),
+  methods: {
+    ...mapActions(['BeginTest']),
+    ThemeClick() {
+      this.BeginTest();
+    },
+  },
 };
 </script>
 

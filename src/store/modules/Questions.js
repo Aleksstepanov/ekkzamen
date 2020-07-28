@@ -28,10 +28,18 @@ export default {
         [state.questions[i], state.questions[j]] = [state.questions[j], state.questions[i]];
       }
     },
+    clearResult(state) {
+      state.Result.title = '';
+      state.Result.answer = [];
+      state.Result.count = 0;
+    },
   },
   actions: {
     Reaply(ctx, answer) {
       ctx.commit('createAnswer', answer);
+    },
+    BeginTest(ctx) {
+      ctx.commit('clearResult');
     },
   },
   getters: {
