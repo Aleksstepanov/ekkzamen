@@ -3,10 +3,12 @@
     <header>
       <nav id="nav" class="blue lighten-3">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" class="brand-logo valign-wrapper">
+            <img src="./assets/img/Gorelektroset.jpg" width="40px" height="40px" class="logo">
+          </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><router-link to="/">Home</router-link> </li>
-            <li><router-link to="/about">About</router-link></li>
+            <li><router-link to="/">Список тем</router-link> </li>
+            <li><router-link to="/about">Полезные ссылки</router-link></li>
           </ul>
         </div>
       </nav>
@@ -18,18 +20,38 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
+                <h5 class="white-text">Приложение для проверки знаний персонала УАиЦЭС</h5>
                 <p class="grey-text text-lighten-4">
-                  You can use rows and columns here to organize your footer content.
+                  <router-link to="/">Список тем</router-link>
+                </p>
+                <p class="grey-text text-lighten-4">
+                  <router-link to="/about">Полезные ссылки</router-link>
                 </p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li>
+                    <a class="grey-text text-lighten-3" href="http://www.pges.su/" target="_blank">
+                      ЗАО "Пензенская горэлектросеть"
+                    </a>
+                  </li>
+                  <li>
+                    <a class="grey-text text-lighten-3" href="http://www.consultant.ru/document/cons_doc_LAW_314661/" target="_blank">
+                      Федеральный закон от 27.12.2018 N 522-ФЗ
+                    </a>
+                  </li>
+                  <li>
+                    <a class="grey-text text-lighten-3" href="http://www.consultant.ru/document/cons_doc_LAW_156148/b3ff40ceea8ae665280131c2b50f9892cb958415/"
+                      target="_blank"
+                    >
+                      Приказ Минтруда России от 24.07.2013 N 328н
+                    </a>
+                  </li>
+                  <li>
+                    <a class="grey-text text-lighten-3" href="http://www.consultant.ru/document/cons_doc_LAW_169008/" target="_blank">
+                      Приказ Минтруда России от 28.03.2014 N 155н
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -51,5 +73,8 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+  }
+  .logo {
+    margin-left: 15px;
   }
 </style>

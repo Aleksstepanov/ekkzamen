@@ -21,6 +21,13 @@ export default {
       state.Result.answer.push(newAnswer);
       state.Result.count += 1;
     },
+    shuffle(state) {
+      // eslint-disable-next-line no-plusplus
+      for (let i = state.questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [state.questions[i], state.questions[j]] = [state.questions[j], state.questions[i]];
+      }
+    },
   },
   actions: {
     Reaply(ctx, answer) {
